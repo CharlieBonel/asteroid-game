@@ -29,13 +29,6 @@ class Player(CircleShape):
         rotated_vector = unit_vector.rotate(self.rotation)
         rotated_with_speed_vector = rotated_vector * PLAYER_SPEED * dt
         self.position += rotated_with_speed_vector
-        # print(self.rotate(dt))
-        # x2 = math.cos(rotation) * vector_x - math.sin(rotation) * vector_y
-        # y2 = math.sin(rotation) * vector_y - math.cos(rotation) * vector_y
-         #vector_x = x2 * PLAYER_SPEED * dt
-        # vector_y = y2 * PLAYER_SPEED * dt
-        # vector = [x2, y2]
-        # print(f"The vector is: {vector}")
 
     def update(self, dt):
         keys = pygame.key.get_pressed()
