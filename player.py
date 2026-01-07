@@ -32,8 +32,6 @@ class Player(CircleShape):
         self.position += rotated_with_speed_vector
 
     def shoot(self):
-        #time = pygame.time.get_ticks()
-        #time_diff = (time - self.timer) / 1000
         if self.timer > 0:
             pass
         else:
