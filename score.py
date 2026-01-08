@@ -1,8 +1,6 @@
 import pygame
-from constants import SCORE_HEIGHT, SCORE_X_POS
-from circleshape import CircleShape
 
-class Score(CircleShape):
+class Score():
     def __init__(self):
         self.total = 0
 

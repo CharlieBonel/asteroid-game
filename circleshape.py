@@ -1,4 +1,5 @@
 import pygame
+from constants import PLAYER_HIT_COOLDOWN
 
 # Base class for game objects
 class CircleShape(pygame.sprite.Sprite):
