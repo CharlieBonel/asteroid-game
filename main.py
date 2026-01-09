@@ -18,8 +18,9 @@ def main():
     asteroids = pygame.sprite.Group()
     asteroid_field = pygame.sprite.Group()
     shots = pygame.sprite.Group()
-    Player.containers = (updatable, drawable)
-    Asteroid.containers = (updatable, drawable, asteroids)
+    mesh = pygame.sprite.Group()
+    Player.containers = (updatable, drawable, mesh)
+    Asteroid.containers = (updatable, drawable, asteroids, mesh)
     AsteroidField.containers = (updatable)
     Shot.containers = (shots, drawable, updatable)
     # initialising asteroid field
@@ -49,7 +50,7 @@ def main():
         updatable.update(dt)
         # detecting colisions
         for asteroid in asteroids:
-            if player.collides_with(asteroid) == True:
+            if player.collision_detection(asteroid) == True:
                 player.remove_life()
                 # add function to set ship to grey
             for shot in shots:

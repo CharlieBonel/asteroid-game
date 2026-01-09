@@ -1,8 +1,8 @@
 import pygame
 import random
 from circleshape import CircleShape
-from constants import PLAYER_RADIUS, LINE_WIDTH, PLAYER_TURN_SPEED, PLAYER_SPEED, SCREEN_HEIGHT, SCREEN_WIDTH, ASTEROID_MIN_RADIUS
-from logger import log_state, log_event
+from constants import LINE_WIDTH, ASTEROID_MIN_RADIUS
+from logger import log_event
 
 class Asteroid(CircleShape):
     def __init__(self, x, y, radius):
@@ -28,3 +28,4 @@ class Asteroid(CircleShape):
             asteroid_1.velocity = vector_1 * 1.2
             asteroid_2 = Asteroid(self.position.x, self.position.y, new_radius)
             asteroid_2.velocity = vector_2 * 1.2
+    
