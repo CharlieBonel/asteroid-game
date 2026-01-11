@@ -6,7 +6,7 @@ from shot import Shot
 from logger import log_event
 from functions import SqDistPointSegment
 
-from constants import PLAYER_SHOT_SPEED, PLAYER_RADIUS, LINE_WIDTH, PLAYER_TURN_SPEED, PLAYER_SPEED, PLAYER_SHOOT_COOLDOWN_SECONDS, PLAYER_HIT_COOLDOWN
+from constants import PLAYER_SHOT_SPEED, PLAYER_RADIUS, LINE_WIDTH, PLAYER_TURN_SPEED, PLAYER_SPEED, PLAYER_SHOOT_COOLDOWN_SECONDS, PLAYER_HIT_COOLDOWN, SCREEN_HEIGHT, SCREEN_WIDTH
 
 class Player(CircleShape):
     def __init__(self, x, y):
@@ -30,7 +30,7 @@ class Player(CircleShape):
         self.c = c
         return [a, b, c]
     
-    def collision_detection(self, other):
+    def player_collision_detection(self, other):
         # for line between points (x1, y1) and (x2, y2)
         triangle = self.triangle()
         point_a = triangle[0]
@@ -66,6 +66,16 @@ class Player(CircleShape):
         rotated_vector = unit_vector.rotate(self.rotation)
         rotated_with_speed_vector = rotated_vector * PLAYER_SPEED * dt
         self.position += rotated_with_speed_vector
+        # wrapping the screen around for the character
+        if self.position.x > SCREEN_WIDTH + PLAYER_RADIUS:
+            self.position.x = 0 - PLAYER_RADIUS
+        elif self.position.x < 0 - PLAYER_RADIUS:
+            self.position.x = SCREEN_WIDTH + PLAYER_RADIUS
+        if self.position.y > SCREEN_HEIGHT + PLAYER_RADIUS:
+            self.position.y = 0 - PLAYER_RADIUS
+        elif self.position.y < 0 - PLAYER_RADIUS:
+            self.position.y = SCREEN_HEIGHT + PLAYER_RADIUS
+        
 
     def shoot(self):
         if self.shot_cooldown_timer > 0:

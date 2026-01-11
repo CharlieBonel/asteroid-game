@@ -1,7 +1,7 @@
 import pygame
 import random
 from circleshape import CircleShape
-from constants import LINE_WIDTH, ASTEROID_MIN_RADIUS
+from constants import LINE_WIDTH, ASTEROID_MIN_RADIUS, SCREEN_HEIGHT, SCREEN_WIDTH
 from logger import log_event
 
 class Asteroid(CircleShape):
@@ -13,6 +13,16 @@ class Asteroid(CircleShape):
     
     def update(self, dt):
         self.position += self.velocity * dt
+        
+        # wrapping the screen for the asteroid
+        if self.position.x > SCREEN_WIDTH + self.radius:
+            self.position.x = 0 - self.radius
+        elif self.position.x < 0 - self.radius:
+            self.position.x = SCREEN_WIDTH + self.radius
+        if self.position.y > SCREEN_HEIGHT + self.radius:
+            self.position.y = 0 - self.radius
+        elif self.position.y < 0 - self.radius:
+            self.position.y = SCREEN_HEIGHT + self.radius
 
     def split(self):
         pygame.sprite.Sprite.kill(self)

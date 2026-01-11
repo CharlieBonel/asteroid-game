@@ -50,11 +50,11 @@ def main():
         updatable.update(dt)
         # detecting colisions
         for asteroid in asteroids:
-            if player.collision_detection(asteroid) == True:
+            if player.player_collision_detection(asteroid) == True:
                 player.remove_life()
                 # add function to set ship to grey
             for shot in shots:
-                if shot.collides_with(asteroid) == True:
+                if shot.shot_collision(asteroid) == True:
                     log_event("asteroid_shot")
                     pygame.sprite.Sprite.kill(shot)
                     asteroid.split()
